@@ -152,7 +152,7 @@ function App() {
   }
 
   useEffect(() => {
-    saveGameStateToLocalStorage({ guesses, solu })
+    saveGameStateToLocalStorage({ guesses, solution })
   }, [guesses])
 
   useEffect(() => {
