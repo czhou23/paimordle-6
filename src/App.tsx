@@ -23,6 +23,7 @@ import {
   isWordInWordList,
   isWinningWord,
   solution,
+  extremeSolution,
   findFirstUnusedReveal,
   unicodeLength,
 } from './lib/words'
