@@ -11,7 +11,7 @@ export const isWordInWordList = (word: string) => {
   )
 }
 
-export const isWinningWord = (word: solut, word: string) => {
+export const isWinningWord = (solut: string, word: string) => {
   return solut === word
 }
 
