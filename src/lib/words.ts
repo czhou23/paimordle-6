@@ -1,4 +1,4 @@
-import { WORDS } from '../constants/wordlist'
+import { WORDS, EXTREME_WORDS } from '../constants/wordlist'
 import { VALID_GUESSES } from '../constants/validGuesses'
 import { WRONG_SPOT_MESSAGE, NOT_CONTAINED_MESSAGE } from '../constants/strings'
 import { getGuessStatuses } from './statuses'
@@ -84,9 +84,10 @@ export const getWordOfDay = () => {
 
   return {
     solution: localeAwareUpperCase(WORDS[index % WORDS.length]),
+    extremeSolution: localeAwareUpperCase(EXTREME_WORDS[index % EXTREME_WORDS.length]),
     solutionIndex: index,
     tomorrow: nextday,
   }
 }
 
-export const { solution, solutionIndex, tomorrow } = getWordOfDay()
+export const { solution, extremeSolution, solutionIndex, tomorrow } = getWordOfDay()
