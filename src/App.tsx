@@ -24,7 +24,7 @@ import {
   isWinningWord,
   solution,
   extremeSolution,
-  findFirstUnusedReveal,
+  //findFirstUnusedReveal,
   unicodeLength,
 } from './lib/words'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
