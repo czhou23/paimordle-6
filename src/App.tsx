@@ -229,7 +229,7 @@ function App() {
       setIsRevealing(false)
     }, REVEAL_TIME_MS * MAX_WORD_LENGTH)
 
-    const winningWord = isWinningWord(currentGuess)
+    const winningWord = isWinningWord(solu, currentGuess)
 
     if (
       unicodeLength(currentGuess) === MAX_WORD_LENGTH &&
