@@ -121,7 +121,7 @@ function App() {
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
   }
   
-  export const handleHardMode = (isHard: boolean) => {
+  const handleHardMode = (isHard: boolean) => {
     if (guesses.length === 0 || isGameWon || isGameLost) {
       setIsHardMode(isHard)
       if(isHard){
