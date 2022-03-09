@@ -19,7 +19,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
         <Cell value="A"/>
         <Cell 
           isRevealing={true}
-          isComplete={true}
+          isCompleted={true}
           status="correct"
           value="I" 
         />
@@ -64,7 +64,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
         This is an open source version of the word guessing game we all know and
         love -{' '}
         <a
-          href="https://github.com/cwackerfuss/react-wordle"
+          href="https://github.com/czhou23/paimordle-vi"
           className="underline font-bold"
         >
           check out the code here
