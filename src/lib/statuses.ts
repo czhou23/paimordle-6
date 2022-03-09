@@ -1,5 +1,5 @@
 import { unicodeSplit } from './words'
-import { solution } from '../extreme'
+import { solution } from './extreme'
 
 export type CharStatus = 'absent' | 'present' | 'correct'
 
