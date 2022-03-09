@@ -1,5 +1,5 @@
 import { unicodeSplit } from './words'
-import { solution } from './src/App.tsx'
+import { solution } from '../App.tsx'
 
 export type CharStatus = 'absent' | 'present' | 'correct'
 
