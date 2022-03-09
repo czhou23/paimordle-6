@@ -20,12 +20,15 @@ import {
   WELCOME_INFO_MODAL_MS,
 } from './constants/settings'
 import {
+  solution as s,
+  extremeSolution,
   isWordInWordList,
   isWinningWord,
   //findFirstUnusedReveal,
   unicodeLength,
 } from './lib/words'
-import { solution, checkSolu } from './lib/extreme'
+//import { solution as s, checkSolu } from './lib/extreme'
+
 import { updateSolu } from './lib/statuses'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
@@ -40,14 +43,18 @@ import './App.css'
 import { AlertContainer } from './components/alerts/AlertContainer'
 import { useAlert } from './context/AlertContext'
 import { Navbar } from './components/navbar/Navbar'
-var isHardMode = false;
+var isHardMode = false
+var solution = s
+
 function App() {
   const [isHardMode, setIsHardMode] = useState(
   localStorage.getItem('gameMode')
     ? localStorage.getItem('gameMode') === 'hard'
     : false
   )
-  
+  if(isHardMode){
+    solution = extremeSolution
+  }
   const prefersDarkMode = window.matchMedia(
     '(prefers-color-scheme: dark)'
   ).matches
@@ -125,8 +132,12 @@ function App() {
   const handleHardMode = (isHard: boolean) => {
     if (guesses.length === 0 || isGameWon || isGameLost) {
       setIsHardMode(isHard)
+      solution = s
+      if(isHard){
+        solution = extremeSolution
+      }
       checkSolu()
-      updateSolu()
+      updateSolu(solution)
       localStorage.setItem('gameMode', isHard ? 'hard' : 'normal')
     } else {
       showErrorAlert(HARD_MODE_ALERT_MESSAGE)
