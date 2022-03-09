@@ -20,8 +20,6 @@ import {
   WELCOME_INFO_MODAL_MS,
 } from './constants/settings'
 import {
-  solution as s,
-  extremeSolution as es,
   isWordInWordList,
   isWinningWord,
   solutionIndex,
@@ -44,10 +42,10 @@ import './App.css'
 import { AlertContainer } from './components/alerts/AlertContainer'
 import { useAlert } from './context/AlertContext'
 import { Navbar } from './components/navbar/Navbar'
-var solution = s
 var solutions = getSolution(solutionIndex)
-s = solutions.solution
-es = solutions.extremeSolution
+var s = solutions.solution
+var es = solutions.extremeSolution
+var solution = s
 
 function App() {
   const [isHardMode, setIsHardMode] = useState(
