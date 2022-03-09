@@ -25,7 +25,7 @@ import {
   //findFirstUnusedReveal,
   unicodeLength,
 } from './lib/words'
-import { solution } from './lib/extreme'
+import { solution, checkSolu } from './lib/extreme'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
   loadGameStateFromLocalStorage,
@@ -124,6 +124,7 @@ function App() {
   const handleHardMode = (isHard: boolean) => {
     if (guesses.length === 0 || isGameWon || isGameLost) {
       setIsHardMode(isHard)
+      checkSolu
       localStorage.setItem('gameMode', isHard ? 'hard' : 'normal')
     } else {
       showErrorAlert(HARD_MODE_ALERT_MESSAGE)
