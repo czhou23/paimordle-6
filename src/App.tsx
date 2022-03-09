@@ -124,7 +124,7 @@ function App() {
   const handleHardMode = (isHard: boolean) => {
     if (guesses.length === 0 || isGameWon || isGameLost) {
       setIsHardMode(isHard)
-      checkSolu
+      checkSolu()
       localStorage.setItem('gameMode', isHard ? 'hard' : 'normal')
     } else {
       showErrorAlert(HARD_MODE_ALERT_MESSAGE)
