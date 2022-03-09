@@ -15,46 +15,49 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
-        <Cell
+        <Cell value="P"/>
+        <Cell value="A"/>
+        <Cell 
           isRevealing={true}
-          isCompleted={true}
-          value="W"
+          isComplete={true}
           status="correct"
+          value="I" 
         />
-        <Cell value="E" />
-        <Cell value="A" />
-        <Cell value="R" />
-        <Cell value="Y" />
+        <Cell value="M" />
+        <Cell value="O" />
+        <Cell value="N" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        The letter W is in the word and in the correct spot.
+        The letter I is in the word and in the correct spot.
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
-        <Cell value="P" />
-        <Cell value="I" />
+        <Cell value="D" />
+        <Cell value="E" />
+        <Cell value="N" />
+        <Cell value="D" />
         <Cell
           isRevealing={true}
           isCompleted={true}
-          value="L"
+          value="R"
           status="present"
         />
         <Cell value="O" />
-        <Cell value="T" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        The letter L is in the word but in the wrong spot.
+        The letter R is in the word but in the wrong spot.
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
-        <Cell value="V" />
         <Cell value="A" />
-        <Cell value="G" />
-        <Cell isRevealing={true} isCompleted={true} value="U" status="absent" />
+        <Cell isRevealing={true} isCompleted={true} value="L" status="absent" />
+        <Cell value="B" />
         <Cell value="E" />
+        <Cell value="D" />
+        <Cell value="O" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        The letter U is not in the word in any spot.
+        The letter L is not in the word in any spot.
       </p>
 
       <p className="mt-6 italic text-sm text-gray-500 dark:text-gray-300">
