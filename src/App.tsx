@@ -310,5 +310,6 @@ function App() {
     </div>
   )
 }
-export default App
 export { solution }
+export default App
+
