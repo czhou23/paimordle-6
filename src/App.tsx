@@ -52,6 +52,7 @@ function App() {
   )
   if(isHardMode){
     solution = extremeSolution
+    updateSolu(solution)
   }
   const prefersDarkMode = window.matchMedia(
     '(prefers-color-scheme: dark)'
