@@ -1,5 +1,5 @@
 import { unicodeSplit } from './words'
-import { solution as s} from './extreme'
+import { solution as s} from '../App'
 var solution = s
 export type CharStatus = 'absent' | 'present' | 'correct'
 export function updateSolu(solut: string){
