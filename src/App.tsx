@@ -142,7 +142,7 @@ function App() {
     }
   }
   let s: string = solu
-  export(s as solution)
+  export{s as solution}
 
   const handleHighContrastMode = (isHighContrast: boolean) => {
     setIsHighContrastMode(isHighContrast)
