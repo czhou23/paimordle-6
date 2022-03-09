@@ -141,7 +141,8 @@ function App() {
       showErrorAlert(HARD_MODE_ALERT_MESSAGE)
     }
   }
-  export(solu as solution)
+  let s: string = solu
+  export(s as solution)
 
   const handleHighContrastMode = (isHighContrast: boolean) => {
     setIsHighContrastMode(isHighContrast)
