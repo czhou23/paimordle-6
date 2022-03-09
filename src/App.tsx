@@ -26,7 +26,8 @@ import {
   unicodeLength,
 } from './lib/words'
 import { solution, checkSolu } from './lib/extreme'
-import { addStatsForCompletedGame, loadStats, updateSolu } from './lib/stats'
+import { updateSolu } from '.lib/statuses'
+import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
   loadGameStateFromLocalStorage,
   saveGameStateToLocalStorage,
@@ -125,6 +126,7 @@ function App() {
     if (guesses.length === 0 || isGameWon || isGameLost) {
       setIsHardMode(isHard)
       checkSolu()
+      updateSolu()
       localStorage.setItem('gameMode', isHard ? 'hard' : 'normal')
     } else {
       showErrorAlert(HARD_MODE_ALERT_MESSAGE)
