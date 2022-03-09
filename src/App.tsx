@@ -22,11 +22,10 @@ import {
 import {
   isWordInWordList,
   isWinningWord,
-  solution,
-  extremeSolution,
   //findFirstUnusedReveal,
   unicodeLength,
 } from './lib/words'
+import { solution, isHardMode, handleHardMode } from './lib/extreme
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
   loadGameStateFromLocalStorage,
@@ -42,16 +41,6 @@ import { useAlert } from './context/AlertContext'
 import { Navbar } from './components/navbar/Navbar'
 var solu = solution
 function App() {
-  const [isHardMode, setIsHardMode] = useState(
-    localStorage.getItem('gameMode')
-      ? localStorage.getItem('gameMode') === 'hard'
-      : false
-  )
-
-  solu = solution
-  if(isHardMode){
-    solu = extremeSolution
-  }
   
   const prefersDarkMode = window.matchMedia(
     '(prefers-color-scheme: dark)'
@@ -127,20 +116,7 @@ function App() {
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
   }
 
-  const handleHardMode = (isHard: boolean) => {
-    if (guesses.length === 0 || isGameWon || isGameLost) {
-      setIsHardMode(isHard)
-      if(isHard){
-        solu = extremeSolution
-      }
-      else{
-        solu = solution
-      }
-      localStorage.setItem('gameMode', isHard ? 'hard' : 'normal')
-    } else {
-      showErrorAlert(HARD_MODE_ALERT_MESSAGE)
-    }
-  }
+  
 
   const handleHighContrastMode = (isHighContrast: boolean) => {
     setIsHighContrastMode(isHighContrast)
@@ -310,6 +286,4 @@ function App() {
     </div>
   )
 }
-let s: string = solu
-export{s as solution}
 export default App
