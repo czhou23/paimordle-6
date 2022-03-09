@@ -21,11 +21,13 @@ import {
 } from './constants/settings'
 import {
   solution as s,
-  extremeSolution,
+  extremeSolution as es,
   isWordInWordList,
   isWinningWord,
+  solutionIndex,
   //findFirstUnusedReveal,
   unicodeLength,
+  getSolution
 } from './lib/words'
 
 import { updateSolu } from './lib/statuses'
@@ -43,6 +45,9 @@ import { AlertContainer } from './components/alerts/AlertContainer'
 import { useAlert } from './context/AlertContext'
 import { Navbar } from './components/navbar/Navbar'
 var solution = s
+var solutions = getSolution(solutionIndex)
+s = solutions.solution
+es = solutions.extremeSolution
 
 function App() {
   const [isHardMode, setIsHardMode] = useState(
@@ -51,7 +56,7 @@ function App() {
     : false
   )
   if(isHardMode){
-    solution = extremeSolution
+    solution = es
     updateSolu(solution)
   }
   const prefersDarkMode = window.matchMedia(
@@ -133,7 +138,7 @@ function App() {
       setIsHardMode(isHard)
       solution = s
       if(isHard){
-        solution = extremeSolution
+        solution = es
       }      
       updateSolu(solution)
       localStorage.setItem('gameMode', isHard ? 'hard' : 'normal')
