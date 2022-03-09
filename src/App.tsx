@@ -26,7 +26,7 @@ import {
   unicodeLength,
 } from './lib/words'
 import { solution, checkSolu } from './lib/extreme'
-import { updateSolu } from '.lib/statuses'
+import { updateSolu } from './lib/statuses'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
   loadGameStateFromLocalStorage,
