@@ -73,16 +73,16 @@ function App() {
   const [isRevealing, setIsRevealing] = useState(false)
   const [guesses, setGuesses] = useState<string[]>(() => {
     const loaded = loadGameStateFromLocalStorage()
-    if (loaded?.solution !== solu) {
+    if (loaded?.solution !== solution) {
       return []
     }
-    const gameWasWon = loaded.guesses.includes(solu)
+    const gameWasWon = loaded.guesses.includes(solution)
     if (gameWasWon) {
       setIsGameWon(true)
     }
     if (loaded.guesses.length === MAX_CHALLENGES && !gameWasWon) {
       setIsGameLost(true)
-      showErrorAlert(CORRECT_WORD_MESSAGE(solu), {
+      showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
         persist: true,
       })
     }
@@ -124,12 +124,6 @@ function App() {
   const handleHardMode = (isHard: boolean) => {
     if (guesses.length === 0 || isGameWon || isGameLost) {
       setIsHardMode(isHard)
-      if(isHard){
-        solu = extremeSolution
-      }
-      else{
-        solu = solution
-      }
       localStorage.setItem('gameMode', isHard ? 'hard' : 'normal')
     } else {
       showErrorAlert(HARD_MODE_ALERT_MESSAGE)
