@@ -1,6 +1,6 @@
 import { solution as s, extremeSolution } from './words'
 import { useState } from 'react'
-var solu = solution
+var solu = s
 export const [isHardMode, setIsHardMode] = useState(
   localStorage.getItem('gameMode')
     ? localStorage.getItem('gameMode') === 'hard'
