@@ -90,7 +90,7 @@ export const getWordOfDay = () => {
     tomorrow: nextday,
   }
 }
-export const getSolution = (number: i) => ({
+export const getSolution = (i: number) => ({
   solution: localeAwareUpperCase(WORDS[i % WORDS.length]),
   extremeSolution: localeAwareUpperCase(EXTREME_WORDS[i % EXTREME_WORDS.length])
 })
