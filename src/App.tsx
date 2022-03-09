@@ -136,7 +136,8 @@ function App() {
       if(isHard){
         solution = extremeSolution
       }
-      checkSolu()
+      //checkSolu()
+      
       updateSolu(solution)
       localStorage.setItem('gameMode', isHard ? 'hard' : 'normal')
     } else {
