@@ -306,4 +306,4 @@ function App() {
   )
 }
 export default App
-export isHardMode
+export { isHardMode }
