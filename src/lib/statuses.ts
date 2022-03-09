@@ -1,8 +1,10 @@
 import { unicodeSplit } from './words'
-import { solution } from './extreme'
-
+import { solution as s} from './extreme'
+var solution = s
 export type CharStatus = 'absent' | 'present' | 'correct'
-
+export function updateSolu(solut: string){
+  solution = solut
+}
 export const getStatuses = (
   guesses: string[]
 ): { [key: string]: CharStatus } => {
