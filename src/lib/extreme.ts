@@ -6,10 +6,10 @@ if(isHardMode){
   solu = extremeSolution
 }
 export function checkSolu(){
-  solu = 'aaaaaa'
+  solu = s
 
   if(isHardMode){
-    solu = 'bbbbbb'
+    solu = extremeSolution
   }
 }
 export {solu as solution}
