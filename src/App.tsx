@@ -25,7 +25,7 @@ import {
   //findFirstUnusedReveal,
   unicodeLength,
 } from './lib/words'
-import { solution, isHardMode, handleHardMode } from './lib/extreme
+import { solution, isHardMode, handleHardMode } from './lib/extreme'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
   loadGameStateFromLocalStorage,
