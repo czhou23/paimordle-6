@@ -27,7 +27,6 @@ import {
   //findFirstUnusedReveal,
   unicodeLength,
 } from './lib/words'
-//import { solution as s, checkSolu } from './lib/extreme'
 
 import { updateSolu } from './lib/statuses'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
@@ -135,9 +134,7 @@ function App() {
       solution = s
       if(isHard){
         solution = extremeSolution
-      }
-      //checkSolu()
-      
+      }      
       updateSolu(solution)
       localStorage.setItem('gameMode', isHard ? 'hard' : 'normal')
     } else {
@@ -315,4 +312,4 @@ function App() {
   )
 }
 export default App
-export { isHardMode }
+export { solution }
