@@ -128,7 +128,7 @@ function App() {
   }
 
   const handleHardMode = (isHard: boolean) => {
-    if (guesses.length === 0 || localStorage.getItem('gameMode') === 'hard') {
+    if (guesses.length === 0 || isGameWon || isGameLost) {
       setIsHardMode(isHard)
       if(isHard){
         solu = extremeSolution
