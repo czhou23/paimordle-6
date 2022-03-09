@@ -40,7 +40,7 @@ import './App.css'
 import { AlertContainer } from './components/alerts/AlertContainer'
 import { useAlert } from './context/AlertContext'
 import { Navbar } from './components/navbar/Navbar'
-
+var solu = solution
 function App() {
   const [isHardMode, setIsHardMode] = useState(
     localStorage.getItem('gameMode')
@@ -48,7 +48,7 @@ function App() {
       : false
   )
 
-  let solu: string = solution
+  solu = solution
   if(isHardMode){
     solu = extremeSolution
   }
