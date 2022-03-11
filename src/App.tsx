@@ -308,7 +308,7 @@ function App() {
     else{
       if (
         unicodeLength(currentGuess) === MAX_WORD_LENGTH &&
-        guesses.length < MAX_CHALLENGES &&
+        extremeGuesses.length < MAX_CHALLENGES &&
         !isExtremeWon
       ) {
         setExtremeGuesses([...extremeGuesses, currentGuess])
@@ -316,11 +316,11 @@ function App() {
         currentGuesses = extremeGuesses
 
         if (winningExtremeWord) {
-          return setIsGameWon(true)
+          return setIsExtremeWon(true)
         }
 
-        if (guesses.length === MAX_CHALLENGES - 1) {
-          setIsGameLost(true)
+        if (extremeGuesses.length === MAX_CHALLENGES - 1) {
+          setIsExtremeLost(true)
           showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
             persist: true,
             delayMs: REVEAL_TIME_MS * MAX_WORD_LENGTH + 1,
