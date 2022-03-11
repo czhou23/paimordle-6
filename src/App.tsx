@@ -161,6 +161,16 @@ function App() {
   
   const handleHardMode = (isHard: boolean) => {
     if ((!isHardMode && (guesses.length === 0 || isGameWon || isGameLost)) || (isHardMode && (extremeGuesses.length === 0 || isExtremeWon || isExtremeLost))) {
+      if(isHardMode && isExtremeLost){
+        showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
+        persist: false,
+        })
+      }
+      else if(!isHardMode && isGameLost){
+        showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
+        persist: false,
+        })
+      }
       setIsHardMode(isHard)
       changeGameTitle(isHard)
       changeGameTitleShare(isHard)
@@ -172,17 +182,6 @@ function App() {
       }
       updateSolu(solution)
       localStorage.setItem('gameMode', isHard ? 'hard' : 'normal')
-      
-      if(isHardMode && isExtremeLost){
-        showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
-        persist: false,
-        })
-      }
-      else if(!isHardMode && isGameLost){
-        showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
-        persist: false,
-        })
-      }
     } else {
       showErrorAlert(HARD_MODE_ALERT_MESSAGE)
     }
