@@ -85,7 +85,7 @@ function App() {
   const [isRevealing, setIsRevealing] = useState(false)
   const [guesses, setGuesses] = useState<string[]>(() => {
     const loaded = loadGameStateFromLocalStorage()
-    if (loaded?.solution !== s) {
+    if (loaded?.s !== s) {
       return []
     }
     const gameWasWon = loaded.guesses.includes(s)    
@@ -103,7 +103,7 @@ function App() {
   
   const [extremeGuesses, setExtremeGuesses] = useState<string[]>(() => {
     const loaded = loadGameStateFromLocalStorage()
-    if (loaded?.extremeSolution !== es) {
+    if (loaded?.es !== es) {
       return []
     }
     const extremeWasWon = loaded.extremeGuesses.includes(es)
