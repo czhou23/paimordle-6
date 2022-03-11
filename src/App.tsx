@@ -156,7 +156,7 @@ function App() {
   }
   
   const handleHardMode = (isHard: boolean) => {
-    if ((!isHardMode && (guesses.length === 0 || isGameWon || isGameLost)) || (isHardMode && (extremeGuesses.length == 0 || isExtremeWon || isExtremeLost))) {
+    if ((!isHardMode && (guesses.length === 0 || isGameWon || isGameLost)) || (isHardMode && (extremeGuesses.length === 0 || isExtremeWon || isExtremeLost))) {
       setIsHardMode(isHard)
       solution = s
       currentGuesses = guesses
@@ -278,7 +278,8 @@ function App() {
       setIsRevealing(false)
     }, REVEAL_TIME_MS * MAX_WORD_LENGTH)
 
-    const winningWord = isWinningWord(solution, currentGuess)
+    const winningWord = isWinningWord(s, currentGuess)
+    const winningExtremeWord = isWinningWord(es, currentGuess)
     if(!isHardMode) {
       if (
         unicodeLength(currentGuess) === MAX_WORD_LENGTH &&
@@ -314,7 +315,7 @@ function App() {
         setCurrentGuess('')
         currentGuesses = extremeGuesses
 
-        if (winningWord) {
+        if (winningExtremeWord) {
           return setIsGameWon(true)
         }
 
