@@ -1,5 +1,5 @@
 export const GAME_TITLE = 'Paimordle VI'
-export const GAME_TITLE2 = (isHardMode) => {
+export const GAME_TITLE2 = (isHardMode: boolean) => {
   if(isHardMode){
     return('Paimordle VI Extreme')
   }
