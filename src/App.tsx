@@ -99,7 +99,7 @@ function App() {
     if (loaded.guesses.length === MAX_CHALLENGES && !gameWasWon) {
       setIsGameLost(true)
       showErrorAlert(CORRECT_WORD_MESSAGE(s), {
-        persist: true,
+        persist: false,
       })
     }
     return loaded.guesses
