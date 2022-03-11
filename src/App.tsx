@@ -286,15 +286,16 @@ function App() {
         !isGameWon
       ) {
         setGuesses([...guesses, currentGuess])
+        currentGuesses = guesses
         setCurrentGuess('')
 
         if (winningWord) {
-          setStats(addStatsForCompletedGame(stats, guesses.length))
+          setStats(addStatsForCompletedGame(stats, currentGuesses.length))
           return setIsGameWon(true)
         }
 
-        if (guesses.length === MAX_CHALLENGES - 1) {
-          setStats(addStatsForCompletedGame(stats, guesses.length + 1))
+        if (currentGuesses.length === MAX_CHALLENGES - 1) {
+          setStats(addStatsForCompletedGame(stats, currentGuesses.length + 1))
           setIsGameLost(true)
           showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
             persist: true,
@@ -311,6 +312,7 @@ function App() {
       ) {
         setExtremeGuesses([...extremeGuesses, currentGuess])
         setCurrentGuess('')
+        currentGuesses = extremeGuesses
 
         if (winningWord) {
           return setIsGameWon(true)
