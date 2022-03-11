@@ -100,6 +100,7 @@ function App() {
     }
     return loaded.guesses
   })
+  
   const [extremeGuesses, setExtremeGuesses] = useState<string[]>(() => {
     const loaded = loadGameStateFromLocalStorage()
     if (loaded?.extremeSolution !== es) {
@@ -116,6 +117,7 @@ function App() {
         persist: true,
       })
     }
+    return loaded.extremeGuesses
   })
   const [stats, setStats] = useState(() => loadStats())
 
