@@ -385,6 +385,5 @@ function App() {
     </div>
   )
 }
-export { solution }
 export default App
 
