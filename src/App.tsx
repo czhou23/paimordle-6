@@ -301,7 +301,7 @@ function App() {
       if (
         unicodeLength(currentGuess) === MAX_WORD_LENGTH &&
         guesses.length < MAX_CHALLENGES &&
-        !isExtreneWon
+        !isExtremeWon
       ) {
         setExtremeGuesses([...extremeGuesses, currentGuess])
         setCurrentGuess('')
