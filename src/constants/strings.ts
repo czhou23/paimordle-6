@@ -1,4 +1,5 @@
 export const GAME_TITLE = 'Paimordle VI'
+export const GAME_TITLE2 = (isHardMode) => {(isHardMode) ? 'Paimordle VI Extreme' | 'Paimordle VI'}
 
 export const WIN_MESSAGES = ['Great Job!', 'Awesome', 'Well done!']
 export const GAME_COPIED_MESSAGE = 'Game copied to clipboard'
@@ -7,7 +8,7 @@ export const WORD_NOT_FOUND_MESSAGE = 'Word not found'
 export const HARD_MODE_ALERT_MESSAGE =
   'Finish the current game before switching between Extreme and Normal'
 export const HARD_MODE_DESCRIPTION =
-  'Most valid guesses are now part of the possible answers'
+  'Most valid guesses are now part of the possible answers, and your score is not saved to the stats'
 export const HIGH_CONTRAST_MODE_DESCRIPTION = 'For improved color vision'
 export const CORRECT_WORD_MESSAGE = (solution: string) =>
   `The word was ${solution}`
