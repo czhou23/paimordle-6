@@ -1,9 +1,18 @@
 import { getGuessStatuses } from './statuses'
 import { solutionIndex, unicodeSplit } from './words'
-import { game_title } from '../constants/strings'
+import { GAME_TITLE } from '../constants/strings'
 import { MAX_CHALLENGES } from '../constants/settings'
 import { UAParser } from 'ua-parser-js'
 
+let game_title = GAME_TITLE
+export function changeGameTitleShare(isHardMode: boolean){
+  if(isHardMode){
+    game_title = "Paimordle VI Extreme"
+  }
+  else{
+    game_title = GAME_TITLE
+  }
+}
 const webShareApiDeviceTypes: string[] = ['mobile', 'smarttv', 'wearable']
 const parser = new UAParser()
 const browser = parser.getBrowser()
