@@ -159,7 +159,7 @@ function App() {
     if (guesses.length === 0 || isGameWon || isGameLost) {
       setIsHardMode(isHard)
       solution = s
-      let currentGuesses = guesses
+      currentGuesses = guesses
       if(isHard){
         solution = es
         currentGuesses = extremeGuesses
