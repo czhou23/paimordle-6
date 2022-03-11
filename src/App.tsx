@@ -197,7 +197,7 @@ function App() {
         setIsStatsModalOpen(true)
       }, GAME_LOST_INFO_DELAY)
     }
-  }, [isGameWon, isGameLost, /**showSuccessAlert**/])
+  }, [isGameWon, isGameLost, showSuccessAlert])
   
   useEffect(() => {
     if (isExtremeWon) {
@@ -216,7 +216,7 @@ function App() {
         setIsStatsModalOpen(true)
       }, GAME_LOST_INFO_DELAY)
     }
-  }, [isExtremeWon, isExtremeLost])
+  }, [isExtremeWon, isExtremeLost, showSuccessAlert])
 
 
   const onChar = (value: string) => {
