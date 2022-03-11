@@ -118,7 +118,7 @@ function App() {
     if (loaded.guesses.length === MAX_CHALLENGES && !extremeWasWon) {
       setIsExtremeLost(true)
       showErrorAlert(CORRECT_WORD_MESSAGE(es), {
-        persist: true,
+        persist: false,
       })
     }
     return loaded.extremeGuesses
@@ -169,10 +169,19 @@ function App() {
       if(isHard){
         solution = es
         currentGuesses = extremeGuesses
-      }      
+      }
       updateSolu(solution)
       localStorage.setItem('gameMode', isHard ? 'hard' : 'normal')
       
+      if(isHardMode && isExtremeLost){
+        showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
+        persist: false,
+        })
+      }
+      else if(!isHardMode && isGameLost){
+        showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
+        persist: false,
+      }
     } else {
       showErrorAlert(HARD_MODE_ALERT_MESSAGE)
     }
@@ -328,7 +337,7 @@ function App() {
         if (extremeGuesses.length === MAX_CHALLENGES - 1) {
           setIsExtremeLost(true)
           showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
-            persist: true,
+            persist: false,
             delayMs: REVEAL_TIME_MS * MAX_WORD_LENGTH + 1,
           })
         }
