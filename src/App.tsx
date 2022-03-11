@@ -120,8 +120,12 @@ function App() {
     return loaded.extremeGuesses
   })
   const [stats, setStats] = useState(() => loadStats())
-
   
+  //guesses of the game mode 
+  let currentGuesses = guesses
+  if(isHardMode){
+    currentGuesses = extremeGuesses
+  }
   useEffect(() => {
     // if no game state on load,
     // show the user the how-to info modal
@@ -155,8 +159,10 @@ function App() {
     if (guesses.length === 0 || isGameWon || isGameLost) {
       setIsHardMode(isHard)
       solution = s
+      let currentGuesses = guesses
       if(isHard){
         solution = es
+        currentGuesses = extremeGuesses
       }      
       updateSolu(solution)
       localStorage.setItem('gameMode', isHard ? 'hard' : 'normal')
@@ -331,7 +337,7 @@ function App() {
       <div className="pt-2 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-6 lg:px-8 flex flex-col grow">
         <div className="pb-6 grow">
           <Grid
-            guesses={guesses}
+            guesses={currentGuesses}
             currentGuess={currentGuess}
             isRevealing={isRevealing}
             currentRowClassName={currentRowClass}
@@ -341,7 +347,7 @@ function App() {
           onChar={onChar}
           onDelete={onDelete}
           onEnter={onEnter}
-          guesses={guesses}
+          guesses={currentGuesses}
           isRevealing={isRevealing}
         />
         <InfoModal
@@ -351,7 +357,7 @@ function App() {
         <StatsModal
           isOpen={isStatsModalOpen}
           handleClose={() => setIsStatsModalOpen(false)}
-          guesses={guesses}
+          guesses={currentGuesses}
           gameStats={stats}
           isGameLost={isGameLost}
           isGameWon={isGameWon}
@@ -359,7 +365,7 @@ function App() {
           isHardMode={isHardMode}
           isDarkMode={isDarkMode}
           isHighContrastMode={isHighContrastMode}
-          numberOfGuessesMade={guesses.length}
+          numberOfGuessesMade={currentGuesses.length}
         />
         <SettingsModal
           isOpen={isSettingsModalOpen}
