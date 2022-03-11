@@ -41,7 +41,7 @@ import { default as GraphemeSplitter } from 'grapheme-splitter'
 import './App.css'
 import { AlertContainer } from './components/alerts/AlertContainer'
 import { useAlert } from './context/AlertContext'
-import { Navbar } from './components/navbar/Navbar'
+import { Navbar, changeGameTitle } from './components/navbar/Navbar'
 var solutions = getSolution(solutionIndex)
 var s = solutions.solution
 var es = solutions.extremeSolution
@@ -53,9 +53,11 @@ function App() {
     ? localStorage.getItem('gameMode') === 'hard'
     : false
   )
+  changeGameTitle(isHardMode)
   if(isHardMode){
     solution = es
     updateSolu(solution)
+    
   }
   const prefersDarkMode = window.matchMedia(
     '(prefers-color-scheme: dark)'
@@ -158,6 +160,7 @@ function App() {
   const handleHardMode = (isHard: boolean) => {
     if ((!isHardMode && (guesses.length === 0 || isGameWon || isGameLost)) || (isHardMode && (extremeGuesses.length === 0 || isExtremeWon || isExtremeLost))) {
       setIsHardMode(isHard)
+      changeGameTitle(isHard)
       solution = s
       currentGuesses = guesses
       if(isHard){
