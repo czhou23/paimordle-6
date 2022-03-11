@@ -4,7 +4,15 @@ import {
   InformationCircleIcon,
 } from '@heroicons/react/outline'
 import { GAME_TITLE } from '../../constants/strings'
-
+var game_title = GAME_TITLE;
+export function changeGameTitle(isHardMode: boolean) {
+  if(isHardMode){
+    game_title = 'Paimordle VI Extreme'
+  }
+  else{
+    game_title = 'Paimordle VI'
+  }
+}
 type Props = {
   setIsInfoModalOpen: (value: boolean) => void
   setIsStatsModalOpen: (value: boolean) => void
