@@ -4,6 +4,7 @@ import { Keyboard } from './components/keyboard/Keyboard'
 import { InfoModal } from './components/modals/InfoModal'
 import { StatsModal } from './components/modals/StatsModal'
 import { SettingsModal } from './components/modals/SettingsModal'
+import { changeGameTitleShare } from './lib/share'
 import {
   WIN_MESSAGES,
   GAME_COPIED_MESSAGE,
@@ -54,6 +55,7 @@ function App() {
     : false
   )
   changeGameTitle(isHardMode)
+  changeGameTitleShare(isHardMode)
   if(isHardMode){
     solution = es
     updateSolu(solution)
@@ -161,6 +163,7 @@ function App() {
     if ((!isHardMode && (guesses.length === 0 || isGameWon || isGameLost)) || (isHardMode && (extremeGuesses.length === 0 || isExtremeWon || isExtremeLost))) {
       setIsHardMode(isHard)
       changeGameTitle(isHard)
+      changeGameTitleShare(isHard)
       solution = s
       currentGuesses = guesses
       if(isHard){
