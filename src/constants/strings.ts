@@ -1,5 +1,12 @@
 export const GAME_TITLE = 'Paimordle VI'
-export const GAME_TITLE2 = (isHardMode) => {(isHardMode) ? 'Paimordle VI Extreme' : 'Paimordle VI'}
+export const GAME_TITLE2 = (isHardMode) => {
+  if(isHardMode){
+    return('Paimordle VI Extreme')
+  }
+  else{
+    return('Paimordle VI')
+  }
+}
 
 export const WIN_MESSAGES = ['Great Job!', 'Awesome', 'Well done!']
 export const GAME_COPIED_MESSAGE = 'Game copied to clipboard'
