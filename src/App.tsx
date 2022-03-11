@@ -156,7 +156,7 @@ function App() {
   }
   
   const handleHardMode = (isHard: boolean) => {
-    if (guesses.length === 0 || isGameWon || isGameLost) {
+    if ((!isHardMode && (guesses.length === 0 || isGameWon || isGameLost)) || (isHardMode && (extremeGuesses.length == 0 || isExtremeWon || isExtremeLost))) {
       setIsHardMode(isHard)
       solution = s
       currentGuesses = guesses
