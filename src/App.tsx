@@ -65,11 +65,13 @@ function App() {
     useAlert()
   const [currentGuess, setCurrentGuess] = useState('')
   const [isGameWon, setIsGameWon] = useState(false)
+  const [isExtremeWon, setIsExtremeWon] = useState(false)
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false)
   const [currentRowClass, setCurrentRowClass] = useState('')
   const [isGameLost, setIsGameLost] = useState(false)
+  const [isExtremeLost, setIsExtremeLost] = useState(false)
   const [isDarkMode, setIsDarkMode] = useState(
     localStorage.getItem('theme')
       ? localStorage.getItem('theme') === 'dark'
@@ -83,22 +85,38 @@ function App() {
   const [isRevealing, setIsRevealing] = useState(false)
   const [guesses, setGuesses] = useState<string[]>(() => {
     const loaded = loadGameStateFromLocalStorage()
-    if (loaded?.solution !== solution) {
+    if (loaded?.solution !== s) {
       return []
     }
-    const gameWasWon = loaded.guesses.includes(solution)
+    const gameWasWon = loaded.guesses.includes(s)    
     if (gameWasWon) {
       setIsGameWon(true)
     }
     if (loaded.guesses.length === MAX_CHALLENGES && !gameWasWon) {
       setIsGameLost(true)
-      showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
+      showErrorAlert(CORRECT_WORD_MESSAGE(s), {
         persist: true,
       })
     }
     return loaded.guesses
   })
-
+  const [extremeGuesses, setExtremeGuesses] = useState<string[]>(() => {
+    const loaded = loadGameStateFromLocalStorage()
+    if (loaded?.extremeSolution !== es) {
+      return []
+    }
+    const extremeWasWon = loaded.extremeGuesses.includes(es)
+    
+    if (extremeWasWon) {
+      setIsExtremeWon(true)
+    }
+    if (loaded.guesses.length === MAX_CHALLENGES && !extremeWasWon) {
+      setIsExtremeLost(true)
+      showErrorAlert(CORRECT_WORD_MESSAGE(es), {
+        persist: true,
+      })
+    }
+  })
   const [stats, setStats] = useState(() => loadStats())
 
   
@@ -140,6 +158,7 @@ function App() {
       }      
       updateSolu(solution)
       localStorage.setItem('gameMode', isHard ? 'hard' : 'normal')
+      
     } else {
       showErrorAlert(HARD_MODE_ALERT_MESSAGE)
     }
@@ -156,8 +175,8 @@ function App() {
   }
 
   useEffect(() => {
-    saveGameStateToLocalStorage({ guesses, solution })
-  }, [guesses])
+    saveGameStateToLocalStorage({ guesses, s, extremeGuesses, es })
+  }, [guesses, extremeGuesses])
 
   useEffect(() => {
     if (isGameWon) {
@@ -176,15 +195,46 @@ function App() {
         setIsStatsModalOpen(true)
       }, GAME_LOST_INFO_DELAY)
     }
-  }, [isGameWon, isGameLost, showSuccessAlert])
+  }, [isGameWon, isGameLost, /**showSuccessAlert**/])
+  
+  useEffect(() => {
+    if (isExtremeWon) {
+      const winMessage =
+        WIN_MESSAGES[Math.floor(Math.random() * WIN_MESSAGES.length)]
+      const delayMs = REVEAL_TIME_MS * MAX_WORD_LENGTH
+
+      showSuccessAlert(winMessage, {
+        delayMs,
+        onClose: () => setIsStatsModalOpen(true),
+      })
+    }
+
+    if (isExtremeLost) {
+      setTimeout(() => {
+        setIsStatsModalOpen(true)
+      }, GAME_LOST_INFO_DELAY)
+    }
+  }, [isExtremeWon, isExtremeLost])
+
 
   const onChar = (value: string) => {
-    if (
-      unicodeLength(`${currentGuess}${value}`) <= MAX_WORD_LENGTH &&
-      guesses.length < MAX_CHALLENGES &&
-      !isGameWon
-    ) {
-      setCurrentGuess(`${currentGuess}${value}`)
+    if(isHardMode){
+      if (
+        unicodeLength(`${currentGuess}${value}`) <= MAX_WORD_LENGTH &&
+        guesses.length < MAX_CHALLENGES &&
+        !isExtremeWon
+      ) {
+        setCurrentGuess(`${currentGuess}${value}`)
+      }
+    }
+    else{
+      if (
+        unicodeLength(`${currentGuess}${value}`) <= MAX_WORD_LENGTH &&
+        guesses.length < MAX_CHALLENGES &&
+        !isGameWon
+      ) {
+        setCurrentGuess(`${currentGuess}${value}`)
+      }
     }
   }
 
@@ -195,10 +245,10 @@ function App() {
   }
 
   const onEnter = () => {
-    if (isGameWon || isGameLost) {
+    if (!isHardMode && (isGameWon || isGameLost)) {
       return
     }
-
+    
     if (!(unicodeLength(currentGuess) === MAX_WORD_LENGTH)) {
       setCurrentRowClass('jiggle')
       return showErrorAlert(NOT_ENOUGH_LETTERS_MESSAGE, {
@@ -212,19 +262,6 @@ function App() {
         onClose: clearCurrentRowClass,
       })
     }
-
-    // enforce hard mode - all guesses must contain all previously revealed letters
-    /**
-    if (isHardMode) {
-      const firstMissingReveal = findFirstUnusedReveal(currentGuess, guesses)
-      if (firstMissingReveal) {
-        setCurrentRowClass('jiggle')
-        return showErrorAlert(firstMissingReveal, {
-          onClose: clearCurrentRowClass,
-        })
-      }
-    }
-    **/
     
     setIsRevealing(true)
     // turn this back off after all
@@ -234,27 +271,50 @@ function App() {
     }, REVEAL_TIME_MS * MAX_WORD_LENGTH)
 
     const winningWord = isWinningWord(solution, currentGuess)
+    if(!isHardMode) {
+      if (
+        unicodeLength(currentGuess) === MAX_WORD_LENGTH &&
+        guesses.length < MAX_CHALLENGES &&
+        !isGameWon
+      ) {
+        setGuesses([...guesses, currentGuess])
+        setCurrentGuess('')
 
-    if (
-      unicodeLength(currentGuess) === MAX_WORD_LENGTH &&
-      guesses.length < MAX_CHALLENGES &&
-      !isGameWon
-    ) {
-      setGuesses([...guesses, currentGuess])
-      setCurrentGuess('')
+        if (winningWord) {
+          setStats(addStatsForCompletedGame(stats, guesses.length))
+          return setIsGameWon(true)
+        }
 
-      if (winningWord) {
-        setStats(addStatsForCompletedGame(stats, guesses.length))
-        return setIsGameWon(true)
+        if (guesses.length === MAX_CHALLENGES - 1) {
+          setStats(addStatsForCompletedGame(stats, guesses.length + 1))
+          setIsGameLost(true)
+          showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
+            persist: true,
+            delayMs: REVEAL_TIME_MS * MAX_WORD_LENGTH + 1,
+          })
+        }
       }
+    }
+    else{
+      if (
+        unicodeLength(currentGuess) === MAX_WORD_LENGTH &&
+        guesses.length < MAX_CHALLENGES &&
+        !isExtreneWon
+      ) {
+        setExtremeGuesses([...extremeGuesses, currentGuess])
+        setCurrentGuess('')
 
-      if (guesses.length === MAX_CHALLENGES - 1) {
-        setStats(addStatsForCompletedGame(stats, guesses.length + 1))
-        setIsGameLost(true)
-        showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
-          persist: true,
-          delayMs: REVEAL_TIME_MS * MAX_WORD_LENGTH + 1,
-        })
+        if (winningWord) {
+          return setIsGameWon(true)
+        }
+
+        if (guesses.length === MAX_CHALLENGES - 1) {
+          setIsGameLost(true)
+          showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
+            persist: true,
+            delayMs: REVEAL_TIME_MS * MAX_WORD_LENGTH + 1,
+          })
+        }
       }
     }
   }
