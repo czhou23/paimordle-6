@@ -305,7 +305,7 @@ function App() {
           setStats(addStatsForCompletedGame(stats, currentGuesses.length + 1))
           setIsGameLost(true)
           showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
-            persist: true,
+            persist: false,
             delayMs: REVEAL_TIME_MS * MAX_WORD_LENGTH + 1,
           })
         }
