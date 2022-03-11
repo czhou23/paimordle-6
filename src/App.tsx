@@ -181,6 +181,7 @@ function App() {
       else if(!isHardMode && isGameLost){
         showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
         persist: false,
+        })
       }
     } else {
       showErrorAlert(HARD_MODE_ALERT_MESSAGE)
