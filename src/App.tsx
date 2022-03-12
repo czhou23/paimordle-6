@@ -172,13 +172,13 @@ function App() {
       }
       updateSolu(solution)
       localStorage.setItem('gameMode', isHard ? 'hard' : 'normal')
-      if(isHardMode && isExtremeLost){
-        showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
+      if(isHard && isExtremeLost){
+        showErrorAlert(CORRECT_WORD_MESSAGE(es), {
         persist: false,
         })
       }
-      else if(!isHardMode && isGameLost){
-        showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
+      else if(!isHard && isGameLost){
+        showErrorAlert(CORRECT_WORD_MESSAGE(s), {
         persist: false,
         })
       }
