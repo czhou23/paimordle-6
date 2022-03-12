@@ -379,6 +379,8 @@ function App() {
           gameStats={stats}
           isGameLost={isGameLost}
           isGameWon={isGameWon}
+          isExtremeLost={isExtremeLost}
+          isExtremeWon={isExtremeWon}
           handleShareToClipboard={() => showSuccessAlert(GAME_COPIED_MESSAGE)}
           isHardMode={isHardMode}
           isDarkMode={isDarkMode}
