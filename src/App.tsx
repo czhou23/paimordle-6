@@ -244,7 +244,7 @@ function App() {
     if(isHardMode){
       if (
         unicodeLength(`${currentGuess}${value}`) <= MAX_WORD_LENGTH &&
-        guesses.length < MAX_CHALLENGES &&
+        extremeGuesses.length < MAX_CHALLENGES &&
         !isExtremeWon
       ) {
         setCurrentGuess(`${currentGuess}${value}`)
