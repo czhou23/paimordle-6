@@ -43,6 +43,7 @@ export const StatsModal = ({
   isHighContrastMode,
   numberOfGuessesMade,
 }: Props) => {
+  /**
   if (gameStats.totalGames <= 0) {
     return (
       <BaseModal
@@ -53,7 +54,7 @@ export const StatsModal = ({
         <StatBar gameStats={gameStats} />
       </BaseModal>
     )
-  }
+  } **/
   return (
     <BaseModal
       title={STATISTICS_TITLE}
