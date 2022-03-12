@@ -55,6 +55,10 @@ export const StatsModal = ({
       </BaseModal>
     )
   } **/
+  let lose = isGameLost
+  if(isHardMode){
+    lose = isExtremeLost
+  }
   return (
     <BaseModal
       title={STATISTICS_TITLE}
@@ -85,7 +89,7 @@ export const StatsModal = ({
             onClick={() => {
               shareStatus(
                 guesses,
-                isGameLost,
+                lose,
                 isHardMode,
                 isDarkMode,
                 isHighContrastMode,
