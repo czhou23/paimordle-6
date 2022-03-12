@@ -19,6 +19,8 @@ type Props = {
   gameStats: GameStats
   isGameLost: boolean
   isGameWon: boolean
+  isExtremeLost: boolean
+  isExtremeWon: boolean
   handleShareToClipboard: () => void
   isHardMode: boolean
   isDarkMode: boolean
@@ -33,6 +35,8 @@ export const StatsModal = ({
   gameStats,
   isGameLost,
   isGameWon,
+  isExtremeLost,
+  isExtremeWon,
   handleShareToClipboard,
   isHardMode,
   isDarkMode,
@@ -64,7 +68,7 @@ export const StatsModal = ({
         gameStats={gameStats}
         numberOfGuessesMade={numberOfGuessesMade}
       />
-      {(isGameLost || isGameWon) && (
+      {(isGameLost || isGameWon || isExtremeLost || isExtremeWon) && (
         <div className="mt-5 sm:mt-6 columns-2 dark:text-white">
           <div>
             <h5>{NEW_WORD_TEXT}</h5>
