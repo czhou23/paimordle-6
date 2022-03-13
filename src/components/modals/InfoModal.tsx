@@ -10,7 +10,8 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
   return (
     <BaseModal title="How to play" isOpen={isOpen} handleClose={handleClose}>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        Guess the word in 6 tries. After each guess, the color of the tiles will
+        Guess the word in 6 tries. Words can be characters, items, and concepts
+        relating to Genshin. After each guess, the color of the tiles will
         change to show how close your guess was to the word.
       </p>
 
@@ -70,6 +71,17 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
           check out the code here
         </a>{' '}
       </p>
+      <p className="mt-6 italic text-sm text-gray-500 dark:text-gray-300">
+        Find updates on the latest with{' '}
+        <a href="https://twitter.com/paimordle" className="underline font-bold">
+          Paimordle
+        </a>{' '}
+      </p>
+        <p className="mt-6 italic text-sm text-gray-500 dark:text-gray-300">
+          Play the original {' '}
+         <a href="https://paimordle-vi.vercel.app/" className="underline font-bold">
+           Paimordle
+          </a>{' '}
     </BaseModal>
   )
 }
