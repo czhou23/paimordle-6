@@ -79,7 +79,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
       </p>
        <p className="mt-6 italic text-sm text-gray-500 dark:text-gray-300">
           Play the original {' '}
-         <a href="https://paimordle-vi.vercel.app/" className="underline font-bold">
+         <a href="https://paimordle.vercel.app/" className="underline font-bold">
            Paimordle
           </a>{' '}
       </p>
